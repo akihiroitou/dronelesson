@@ -7,7 +7,7 @@ mission_basic.py: Example demonstrating basic mission operations including creat
 
 Full documentation is provided at http://python.dronekit.io/examples/mission_basic.html
 """
-#from __future__ import print_function
+from __future__ import print_function
 
 from dronekit import connect, VehicleMode, LocationGlobalRelative, LocationGlobal, Command
 import time
@@ -174,12 +174,35 @@ def arm_and_takeoff(aTargetAltitude):
         time.sleep(1)
 
         
-print('Create a new mission (for current location)')
-adds_square_mission(vehicle.location.global_frame,250)
+    print('Create a new mission (for current location)')
+    #adds_square_mission(vehicle.location.global_frame,150)
+
+    #GEO指定
+    #aLocation = LocationGlobalRelative(35.470699, 138.745756, 20)
+    #adds_square_mission(aLocation,150)
+
+
+    while not vehicle.home_location:
+        cmds = vehicle.commands
+        cmds.download()
+        cmds.wait_ready()
+
+        if not vehicle.home_location:
+            print("ホームロケーションを待っています…")
+
+
+
+    #ホームロケーション
+    adds_square_mission(vehicle.home_location,150)
+
+
+#vehicle.location.global_frame
+
+
 
 
 # From Copter 3.3 you will be able to take off using a mission item. Plane must take off using a mission item (currently).
-arm_and_takeoff(100)
+arm_and_takeoff(10)
 
 print("Starting mission")
 # Reset mission set to first (0) waypoint
