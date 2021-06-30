@@ -190,9 +190,7 @@ def arm_and_takeoff(aTargetAltitude):
         if not vehicle.home_location:
             print("ホームロケーションを待っています…")
 
-
-
-    #ホームロケーション
+    #ホームロケーションセット
     adds_square_mission(vehicle.home_location,150)
 
 
