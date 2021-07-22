@@ -191,7 +191,8 @@ def arm_and_takeoff(aTargetAltitude):
             print("ホームロケーションを待っています…")
 
     #ホームロケーションセット
-    adds_square_mission(vehicle.home_location,150)
+    #三角を描くサイズの縮小
+    adds_square_mission(vehicle.home_location,20)
 
 
 #vehicle.location.global_frame
