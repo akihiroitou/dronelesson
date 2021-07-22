@@ -1,6 +1,7 @@
 import time
 from dronekit import connect, VehicleMode,LocationGlobalRelative
 
+#機体接続
 vehicle = connect('tcp:127.0.0.1:5762', wait_ready=True, timeout=60)
 
 #テレメトリー接続
@@ -18,7 +19,6 @@ while not vehicle.home_location:
 
 # ホームロケーションの取得完了
 print("ホームロケーション: %s" % vehicle.home_location)
-
 
 # arm不可能なモードもしくはセーフティロックがかかっている場合はこの処理でスタックする可能性があります
 while not vehicle.is_armable:
@@ -45,7 +45,6 @@ while True:
         break
 
     time.sleep(1)
- ###############################################
 
 print("スピードを3に設定")
 vehicle.airspeed = 3
